@@ -94,6 +94,10 @@ int main(int argc, const char * argv[]) {
                         }
                         input[i] = c;
                         i += 1;
+                        if (i >= 999) {
+                                printf("Invalid Input Format\n");
+                                exit(0);
+                        }
                         c = fgetc(fptr);
                 }
                 input[i] = '\0';
