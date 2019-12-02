@@ -13,7 +13,7 @@
 
 
 struct User {
-        char username[100];
+        char username[1000];
         int numTweets;
 };
 
@@ -31,7 +31,7 @@ int main(int argc, const char * argv[]) {
         int maxSize = 100;
         bool isEOF = false;
         struct User *users;
-        char input[100];
+        char input[1000];
         
         users = malloc(maxSize*sizeof(struct User));
         
@@ -57,11 +57,8 @@ int main(int argc, const char * argv[]) {
         int namePosition = -1;
         
         while ( (token = strtok(0, ",")) ) {
-                if (strcmp(token, "name") == 0) {
-                        if (namePosition != -1) {
-                                printf("Invalid Input Format\n");
-                                exit(0);
-                        }
+                if (strcmp(token, "\"name\"") == 0
+                        || strcmp(token, "name") == 0) {
                         namePosition = tokenNum;
                 }
                 tokenNum += 1;
@@ -120,6 +117,8 @@ int main(int argc, const char * argv[]) {
                 printf("Invalid Input Format\n");
                 exit(0);
         }
+        
+        //printf("userCount is : %d\n", userCount);
         
         for (int i = 0; i < 10 && i < userCount; ++i) {
                 int maxUser = findMaxTweetUser(userCount, users);
